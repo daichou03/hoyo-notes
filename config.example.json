@@ -1,0 +1,38 @@
+{
+  "accounts": [
+    {
+      "id": "main",
+      "cookie_env": "HOYO_COOKIE_MAIN"
+    },
+    {
+      "id": "alt",
+      "cookie_env": "HOYO_COOKIE_ALT"
+    }
+  ],
+  "profiles": [
+    {
+      "name": "Genshin main",
+      "account": "main",
+      "game": "genshin",
+      "uid": "800000001"
+    },
+    {
+      "name": "Genshin alt",
+      "account": "alt",
+      "game": "genshin",
+      "uid": "800000002"
+    },
+    {
+      "name": "Star Rail",
+      "account": "main",
+      "game": "starrail",
+      "uid": "800000003"
+    },
+    {
+      "name": "ZZZ",
+      "account": "main",
+      "game": "zzz",
+      "uid": "800000004"
+    }
+  ]
+}
