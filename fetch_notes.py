@@ -47,7 +47,7 @@ async def query_profile(profile: dict, accounts: dict) -> dict:
         return {**result, "ok": False, "error": f"Missing environment variable: {cookie_env}"}
 
     # A separate client/cookie jar is used for each login account.
-    client = None
+    # This genshin Client opens a session per request and closes it itself.
     try:
         client = genshin.Client(cookies, region=genshin.Region.OVERSEAS)
         method = getattr(client, METHODS[profile["game"]])
@@ -57,9 +57,6 @@ async def query_profile(profile: dict, accounts: dict) -> dict:
     except Exception as exc:
         # Do not include exception messages: upstream errors may echo auth headers.
         return {**result, "ok": False, "error_type": type(exc).__name__}
-    finally:
-        if client is not None:
-            await client.close()
 
 
 async def main(config_path: str) -> int:
