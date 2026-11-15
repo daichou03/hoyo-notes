@@ -38,6 +38,23 @@ class ExtractStateTests(unittest.TestCase):
             },
         )
 
+    def test_genshin_katheryne_bonus_is_claimed_when_commission_slots_stay_unfinished(self):
+        state = extract_state(
+            "genshin",
+            {
+                "finished_task_num": 4,
+                "total_task_num": 4,
+                "is_extra_task_reward_received": True,
+                "daily_task": {
+                    "task_rewards": [{"status": "TaskRewardStatusUnfinished"}] * 4,
+                    "attendance_rewards": [{"status": "AttendanceRewardStatusTakenAward"}] * 4,
+                },
+            },
+        )
+        commissions = state["daily_commissions"]
+        self.assertTrue(commissions["done"])
+        self.assertTrue(commissions["claimed"])
+
     def test_genshin_claimed_when_rewards_and_bonus_are_taken(self):
         state = extract_state(
             "genshin",

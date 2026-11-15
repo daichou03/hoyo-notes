@@ -10,7 +10,6 @@ a full point bar is both fulfilled and claimed.
 from __future__ import annotations
 
 
-_TASK_CLAIMED = {"TaskRewardStatusTakenAward"}
 _ENCOUNTER_FILLED = {
     "AttendanceRewardStatusTakenAward",
     "AttendanceRewardStatusWaitTaken",
@@ -82,23 +81,19 @@ def _genshin_commissions(data: dict) -> dict:
         (("max_commissions",), ("total_task_num",)),
         (("max_tasks",), ("total_num",)),
     )
-    rewards = daily.get("task_rewards") or []
-    reward_statuses = [_status(item) for item in rewards]
     via_encounter_points = sum(
         _status(item) in _ENCOUNTER_FILLED for item in daily.get("attendance_rewards") or []
     )
     done = completed is not None and required is not None and completed >= required
-    rewards_claimed = bool(reward_statuses) and all(status in _TASK_CLAIMED for status in reward_statuses)
+    # This is Katheryne's 20 primogem bonus, not the per-commission reward slots.
+    # Encounter-point completions leave those slots unfinished after the bonus is claimed.
     bonus_claimed = _first_bool(
         data,
         daily,
         (("claimed_commission_reward",), ("is_extra_task_reward_received",)),
         (("claimed_commission_reward",), ("is_extra_task_reward_received",)),
     )
-    if reward_statuses:
-        claimed = rewards_claimed and (not done or bonus_claimed is True)
-    else:
-        claimed = bool(done and bonus_claimed is True)
+    claimed = bonus_claimed is True
     return {
         "done": done,
         "completed": completed,
