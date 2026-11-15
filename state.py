@@ -26,15 +26,17 @@ def extract_state(game: str, data: dict) -> dict:
                 (("current_train_score",),),
                 (("max_train_score",),),
             ),
+            # rogue_tourn_weekly_max is still 1000, while the shared weekly bar is period_score.
+            # grid_fight is the Currency War score and uses the same 18000 cap.
             "weekly": _point_bar(
                 data,
                 (
-                    ("current_bonus_synchronicity_points",),
-                    ("rogue_tourn_weekly_cur",),
+                    ("period_score",),
+                    ("grid_fight_weekly_cur",),
                 ),
                 (
-                    ("max_bonus_synchronicity_points",),
-                    ("rogue_tourn_weekly_max",),
+                    ("period_max_score",),
+                    ("grid_fight_weekly_max",),
                 ),
             ),
         }

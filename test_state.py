@@ -81,17 +81,21 @@ class ExtractStateTests(unittest.TestCase):
                 "max_train_score": 500,
                 "current_rogue_score": 0,
                 "max_rogue_score": 18000,
-                "rogue_tourn_weekly_cur": 1000,
+                "rogue_tourn_weekly_cur": 18000,
                 "rogue_tourn_weekly_max": 1000,
+                "grid_fight_weekly_cur": 18000,
+                "grid_fight_weekly_max": 18000,
+                "period_score": 18000,
+                "period_max_score": 18000,
             },
         )
         self.assertEqual(state["daily"], {"done": True, "points": 500, "required": 500, "claimed": True})
-        self.assertEqual(state["weekly"], {"done": True, "points": 1000, "required": 1000, "claimed": True})
+        self.assertEqual(state["weekly"], {"done": True, "points": 18000, "required": 18000, "claimed": True})
 
     def test_star_rail_incomplete_points_are_not_claimed(self):
         state = extract_state(
             "starrail",
-            {"current_train_score": 200, "max_train_score": 500, "current_bonus_synchronicity_points": 100, "max_bonus_synchronicity_points": 1000},
+            {"current_train_score": 200, "max_train_score": 500, "period_score": 100, "period_max_score": 18000},
         )
         self.assertFalse(state["daily"]["done"])
         self.assertFalse(state["daily"]["claimed"])
