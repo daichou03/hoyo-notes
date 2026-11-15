@@ -5,8 +5,16 @@
       "cookie_env": "HOYO_COOKIE_MAIN"
     },
     {
-      "id": "alt",
+      "id": "05",
       "cookie_env": "HOYO_COOKIE_ALT"
+    },
+    {
+      "id": "06",
+      "cookie_env": "HOYO_COOKIE_06"
+    },
+    {
+      "id": "01",
+      "cookie_env": "HOYO_COOKIE_01"
     }
   ],
   "profiles": [
@@ -17,10 +25,22 @@
       "uid": "800000001"
     },
     {
-      "name": "Genshin alt",
-      "account": "alt",
+      "name": "Genshin 05",
+      "account": "05",
       "game": "genshin",
-      "uid": "800000002"
+      "uid": "800000005"
+    },
+    {
+      "name": "Genshin 06",
+      "account": "06",
+      "game": "genshin",
+      "uid": "800000006"
+    },
+    {
+      "name": "Genshin 01",
+      "account": "01",
+      "game": "genshin",
+      "uid": "800000007"
     },
     {
       "name": "Star Rail",

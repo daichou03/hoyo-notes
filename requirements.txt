@@ -1,1 +1,2 @@
 genshin>=1.7,<3
+playwright>=1.40

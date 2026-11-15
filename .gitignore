@@ -3,10 +3,12 @@
 .env.*
 !.env.example
 config.json
+cookies.json
 *.cookies.json
 *_cookies.json
 output/
 *.jsonl
 __pycache__/
 .venv/
+.browser/
 .pytest_cache/
