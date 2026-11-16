@@ -12,6 +12,7 @@ class ExtractStateTests(unittest.TestCase):
                 "total_task_num": 4,
                 "is_extra_task_reward_received": False,
                 "daily_task": {
+                    "stored_attendance": "12.5",
                     "task_rewards": [
                         {"status": "TaskRewardStatusTakenAward"},
                         {"status": "TaskRewardStatusTakenAward"},
@@ -35,6 +36,7 @@ class ExtractStateTests(unittest.TestCase):
                 "required": 4,
                 "via_encounter_points": 2,
                 "claimed": False,
+                "encounter_points_left": 12.5,
             },
         )
 

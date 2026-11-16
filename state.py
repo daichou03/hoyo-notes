@@ -96,12 +96,16 @@ def _genshin_commissions(data: dict) -> dict:
         (("claimed_commission_reward",), ("is_extra_task_reward_received",)),
     )
     claimed = bonus_claimed is True
+    encounter_points_left = _lookup_number(daily, (("stored_attendance",),))
+    if encounter_points_left is None:
+        encounter_points_left = _lookup_number(data, (("stored_attendance",),))
     return {
         "done": done,
         "completed": completed,
         "required": required,
         "via_encounter_points": via_encounter_points,
         "claimed": claimed,
+        "encounter_points_left": encounter_points_left,
     }
 
 
@@ -121,6 +125,21 @@ def _lookup_int(data: dict, paths: tuple) -> int | None:
             continue
         if isinstance(value, (int, float, str)) and str(value).lstrip("-").isdigit():
             return int(value)
+    return None
+
+
+def _lookup_number(data: dict, paths: tuple) -> float | None:
+    for path in paths:
+        value = _dig(data, path)
+        if isinstance(value, bool) or value is None:
+            continue
+        if isinstance(value, (int, float)):
+            return float(value)
+        if isinstance(value, str):
+            try:
+                return float(value)
+            except ValueError:
+                continue
     return None
 
 
